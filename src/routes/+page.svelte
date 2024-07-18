@@ -1,5 +1,4 @@
 <script>
-	import Header from '$lib/components/Header.svelte';
 </script>
 
-<Header />
+<div class="h-full w-full bg-rose-200"></div>

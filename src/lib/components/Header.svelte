@@ -27,25 +27,11 @@
 		--header-width: 4rem;
 	}
 
-	ul {
-		list-style: none;
-	}
-
-	a {
-		text-decoration: inherit;
-	}
-
-	:global(body) {
-		background-color: lightpink;
-		height: 100dvh;
-	}
-
 	header {
 		position: fixed;
 		bottom: 0;
-		left: 0;
-		right: 0;
 		height: var(--header-height);
+		width: 100%;
 
 		nav {
 			height: 100%;
