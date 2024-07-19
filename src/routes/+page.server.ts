@@ -3,9 +3,9 @@ import { redirect } from '@sveltejs/kit';
 import type { Action, Actions, PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async (event) => {
-	if (!event.locals.user) {
-		redirect(302, '/login');
-	}
+	// if (!event.locals.user) {
+	// 	redirect(302, '/login');
+	// }
 
 	const posts = await getAllPostsWithUser();
 

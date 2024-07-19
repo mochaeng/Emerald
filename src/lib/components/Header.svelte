@@ -1,10 +1,21 @@
 <script lang="ts">
-	import { Home, Settings } from 'lucide-svelte';
+	import type { User } from 'lucia';
+	import { CircleUser, Home, Settings } from 'lucide-svelte';
+
+	let { user }: { user: User | null } = $props();
 </script>
 
 <header>
 	<nav>
 		<ul>
+			{#if user}
+				<li>
+					<a href="/">
+						<CircleUser size={33} />
+						<span>Account</span>
+					</a>
+				</li>
+			{/if}
 			<li>
 				<a href="/home">
 					<Home size={33} />

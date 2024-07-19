@@ -2,21 +2,21 @@
 	import Header from '$lib/components/Header.svelte';
 	import '../app.css';
 
-	let { children } = $props();
+	let { children, data } = $props();
 </script>
 
-<div class="flex justify-center">
-	<Header />
+<div class="app flex h-full justify-center">
+	<Header user={data.user} />
 
-	<main class="flex w-full max-w-[1016px] pb-16 md:pb-0">
-		<div class="w-full max-w-[632px] border-x-[1px]">
+	<main class="flex h-full w-full max-w-[1016px] justify-center pb-16">
+		<div class="h-full w-full">
 			{@render children()}
 		</div>
-		<div class="left-footer hidden w-[384px] max-w-[384px]">
+		<!-- <div class="left-footer hidden w-[384px] max-w-[384px]">
 			<a href="/">About</a>
 			<a href="/">About</a>
 			<a href="/">About</a>
-		</div>
+		</div> -->
 	</main>
 </div>
 
@@ -26,11 +26,11 @@
 		overflow: auto;
 	}
 
-	@media (width >= 1004px) {
+	/* @media (width >= 1004px) {
 		.left-footer {
 			display: flex;
 			flex-direction: column;
 			align-items: center;
 		}
-	}
+	} */
 </style>

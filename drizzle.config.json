@@ -1,0 +1,7 @@
+{
+    "dialect": "postgresql",
+    "out": "./supabase/migrations",
+    "schema": "./src/lib/db/schema.ts",
+    "verbose": true,
+    "strict": true
+}
