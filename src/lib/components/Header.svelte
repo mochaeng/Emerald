@@ -53,10 +53,10 @@
 	header {
 		position: fixed;
 		bottom: 0;
-		left: 0;
-		right: 0;
 		height: var(--header-height);
+		width: 100%;
 		z-index: 100;
+		order: 2;
 
 		nav {
 			height: 100%;
@@ -88,8 +88,10 @@
 			left: 0;
 			bottom: 0;
 			height: 100dvh;
+			justify-content: start;
 			width: var(--header-width);
 			padding: 0;
+			order: 0;
 
 			ul {
 				flex-direction: column;

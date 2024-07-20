@@ -6,6 +6,7 @@
 	import { Separator } from '$lib/components/ui/separator';
 	import PostCard from '$lib/components/PostCard.svelte';
 	import SapphireFrontPage from '$lib/components/SapphireFrontPage.svelte';
+	import type { PageData } from './$types';
 	const photos: string[] = Object.values(
 		import.meta.glob('$lib/assets/tweets/*', { eager: true, query: '?url', import: 'default' })
 	);
@@ -46,7 +47,7 @@
 	<div class="w-full">
 		<div
 			bind:this={profileHeader}
-			class="sticky top-0 z-10 flex h-14 w-full items-center gap-4 border-b-[2px] bg-white p-4 font-bold text-black"
+			class="sticky top-0 z-10 flex h-14 w-full items-center gap-4 border-b-[2px] bg-white font-bold text-black"
 		>
 			<a href="/"><ArrowLeft /></a>
 			<p>{profileName}</p>
@@ -89,5 +90,5 @@
 		</div>
 	</div>
 {:else}
-	<SapphireFrontPage />
+	<SapphireFrontPage data={data.form} />
 {/if}

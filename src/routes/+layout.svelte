@@ -5,13 +5,10 @@
 	let { children, data } = $props();
 </script>
 
-<div class="app flex h-full justify-center">
+<div class="relative flex flex-col justify-center md:flex-row">
 	<Header user={data.user} />
-
-	<main class="flex h-full w-full max-w-[1016px] justify-center pb-16">
-		<div class="h-full w-full">
-			{@render children()}
-		</div>
+	<main class="flex h-full w-full max-w-[1016px]">
+		{@render children()}
 		<!-- <div class="left-footer hidden w-[384px] max-w-[384px]">
 			<a href="/">About</a>
 			<a href="/">About</a>
