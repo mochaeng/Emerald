@@ -32,9 +32,15 @@ importers:
       lucide-svelte:
         specifier: ^0.408.0
         version: 0.408.0(svelte@5.0.0-next.178)
+      mode-watcher:
+        specifier: ^0.4.0
+        version: 0.4.0(svelte@5.0.0-next.178)
       postgres:
         specifier: ^3.4.4
         version: 3.4.4
+      svelte-sonner:
+        specifier: ^0.3.27
+        version: 0.3.27(svelte@5.0.0-next.178)
       sveltekit-superforms:
         specifier: ^2.16.1
         version: 2.16.1(@sveltejs/kit@2.5.18(@sveltejs/vite-plugin-svelte@3.1.1(svelte@5.0.0-next.178)(vite@5.3.3))(svelte@5.0.0-next.178)(vite@5.3.3))(svelte@5.0.0-next.178)
@@ -1917,6 +1923,11 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
+  mode-watcher@0.4.0:
+    resolution: {integrity: sha512-zuHYgY7Cq4NAB1JHj0NpxTKfx6RMH3A2yAoDfjF1UTaIbgWzRyCQRcK/uE9EuVt2PqAGZZbqxRC0h9eB1hfyJQ==}
+    peerDependencies:
+      svelte: ^4.0.0 || ^5.0.0-next.1
+
   mri@1.2.0:
     resolution: {integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==}
     engines: {node: '>=4'}
@@ -2388,6 +2399,11 @@ packages:
         optional: true
       typescript:
         optional: true
+
+  svelte-sonner@0.3.27:
+    resolution: {integrity: sha512-+PvbuePNTyTNCepCWqKcFeu+Lo27yYuwfSc7zJvrWjCRMJrWAmccPg3j7jO1W13QoN3TySXU5Trb956VBQiM5Q==}
+    peerDependencies:
+      svelte: ^3.0.0 || ^4.0.0 || ^5.0.0-next.1
 
   svelte@5.0.0-next.178:
     resolution: {integrity: sha512-Hr/h/fV+6h7FBoZjop+f8Goc32nfsNP9YWjcWVSZ0kTt3UIWWQbj3rFpaF1b2173fklIq+HJLzrFxC1XMnBfSw==}
@@ -4167,6 +4183,10 @@ snapshots:
 
   mkdirp@3.0.1: {}
 
+  mode-watcher@0.4.0(svelte@5.0.0-next.178):
+    dependencies:
+      svelte: 5.0.0-next.178
+
   mri@1.2.0: {}
 
   mrmime@2.0.0: {}
@@ -4545,6 +4565,10 @@ snapshots:
       postcss: 8.4.39
       postcss-load-config: 4.0.2(postcss@8.4.39)
       typescript: 5.5.3
+
+  svelte-sonner@0.3.27(svelte@5.0.0-next.178):
+    dependencies:
+      svelte: 5.0.0-next.178
 
   svelte@5.0.0-next.178:
     dependencies:

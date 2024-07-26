@@ -17,13 +17,13 @@
 				</li>
 			{/if}
 			<li>
-				<a href="/home">
+				<a href="/">
 					<Home size={33} />
 					<span>Home</span>
 				</a>
 			</li>
 			<li>
-				<a href="/config">
+				<a href="/">
 					<Settings size={33} />
 					<span>More</span>
 				</a>

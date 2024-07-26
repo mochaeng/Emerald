@@ -1,20 +1,27 @@
 <script lang="ts">
-	import type { LoginFormSchema } from '$lib/forms/schema';
+	import type { SignInFormType, SignUpFormType } from '$lib/forms/schema';
 	import { getAllPhotosFromFolder } from '$lib/utils';
 	import { Check } from 'lucide-svelte';
-	import type { Infer, SuperValidated } from 'sveltekit-superforms';
-	import LoginForm from './forms/LoginForm.svelte';
+	import AuthPanel from './AuthPanel.svelte';
 
-	let { data }: { data: SuperValidated<Infer<LoginFormSchema>> } = $props();
+	let {
+		data
+	}: {
+		data: {
+			signInForm: SignInFormType;
+			signUpForm: SignUpFormType;
+		};
+	} = $props();
+
 	const userPhotos = getAllPhotosFromFolder('users');
 </script>
 
 <div class="wrapper h-full w-full">
-	<section class="flex w-full min-w-[384px] flex-col items-center gap-6 bg-blue-50 text-center">
+	<section class="flex w-full flex-col items-center gap-6 bg-blue-50 text-center">
 		<h1
 			class="mt-10 w-fit text-balance text-5xl font-bold !leading-tight tracking-tighter text-gray-900 md:text-5xl lg:text-6xl"
 		>
-			A <span class="bg-blue-400 px-2 text-white">Safespace</span> for those who seek positivity in modern
+			A <span class="bg-blue-400 px-2 text-white">Safeplace</span> for those who seek positivity in modern
 			social media.
 		</h1>
 		<p class="max-w-prose text-balance p-4 text-center text-lg md:text-wrap">
@@ -53,10 +60,8 @@
 		</div>
 	</section>
 
-	<section class="h-full w-full min-w-[384px] bg-rose-400 p-2">
-		<h1>Sign in</h1>
-
-		<LoginForm {data} />
+	<section class="h-full w-full bg-rose-50 p-2">
+		<AuthPanel {data} />
 		<!-- <div class="h-16"></div> -->
 	</section>
 
@@ -73,11 +78,7 @@
 	@media (width >= 842px) {
 		.wrapper {
 			display: grid;
-			grid-template-columns: repeat(auto-fill, minmax(384px, 1fr));
-
-			/* section {
-				max-width: 508px;
-			} */
+			grid-template-columns: repeat(auto-fill, minmax(410px, 1fr));
 		}
 	}
 </style>

@@ -6,15 +6,15 @@
 	import { Separator } from '$lib/components/ui/separator';
 	import PostCard from '$lib/components/PostCard.svelte';
 	import SapphireFrontPage from '$lib/components/SapphireFrontPage.svelte';
-	import type { PageData } from './$types';
 	const photos: string[] = Object.values(
 		import.meta.glob('$lib/assets/tweets/*', { eager: true, query: '?url', import: 'default' })
 	);
 
 	let { data } = $props();
+	let { signInForm, signUpForm } = data;
 
 	let prevScrollpos = 0;
-	let profileHeader: HTMLDivElement | undefined = $state<HTMLDivElement>();
+	let profileHeader = $state<HTMLDivElement>();
 	let profileName = 'Minatozaki Sana';
 	let profileImg = { src: avatarImage, alt: '@sana_jyp' };
 </script>
@@ -90,5 +90,5 @@
 		</div>
 	</div>
 {:else}
-	<SapphireFrontPage data={data.form} />
+	<SapphireFrontPage data={{ signInForm, signUpForm }} />
 {/if}

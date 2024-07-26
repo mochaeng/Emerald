@@ -1,9 +1,12 @@
 <script>
 	import Header from '$lib/components/Header.svelte';
+	import { Toaster } from 'svelte-sonner';
 	import '../app.css';
 
 	let { children, data } = $props();
 </script>
+
+<Toaster />
 
 <div class="relative flex flex-col justify-center md:flex-row">
 	<Header user={data.user} />
