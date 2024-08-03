@@ -37,3 +37,9 @@ export const signUpFormSchema = z
 	});
 export type SignUpFormSchema = typeof signUpFormSchema;
 export type SignUpFormType = SuperValidated<Infer<SignUpFormSchema>>;
+
+export const postTextSchema = z.object({
+	textContent: z.string().min(1).max(144, 'Post could not be greater than 144 characters.')
+});
+export type PostTextSchema = typeof postTextSchema;
+export type PostTextType = SuperValidated<Infer<PostTextSchema>>;

@@ -2,16 +2,11 @@ import { getAllPostsWithUser } from '$lib/db/services/post';
 import { redirect } from '@sveltejs/kit';
 import type { Action, Actions, PageServerLoad } from './$types';
 import { fail, setError, superValidate } from 'sveltekit-superforms';
-import { signInFormSchema, signUpFormSchema } from '$lib/forms/schema';
+import { postTextSchema, signInFormSchema, signUpFormSchema } from '$lib/forms/schema';
 import { zod } from 'sveltekit-superforms/adapters';
 import { generateIdFromEntropySize } from 'lucia';
 import { hash, verify } from '@node-rs/argon2';
-import {
-	getUserByEmail,
-	getUserByUsername,
-	getUserByUsernameOrdEmail,
-	insertUserWithPassword
-} from '$lib/db/services/user';
+import { getUserByEmail, getUserByUsername, insertUserWithPassword } from '$lib/db/services/user';
 import { lucia } from '$lib/server/auth';
 
 export const load: PageServerLoad = async (event) => {
@@ -24,13 +19,13 @@ export const load: PageServerLoad = async (event) => {
 		posts: posts,
 		user: event.locals.user,
 		signInForm: await superValidate(zod(signInFormSchema)),
-		signUpForm: await superValidate(zod(signUpFormSchema))
+		signUpForm: await superValidate(zod(signUpFormSchema)),
+		postTextForm: await superValidate(zod(postTextSchema))
 	};
 };
 
 export const actions: Actions = {
 	signIn: async ({ request, cookies }) => {
-		console.log('hello from signIn');
 		const form = await superValidate(request, zod(signInFormSchema));
 		if (!form.valid) {
 			return fail(400, { form });
@@ -41,9 +36,6 @@ export const actions: Actions = {
 
 		const existingUser = await getUserByUsername(username);
 		if (!existingUser || !existingUser.passwordHash) {
-			// return fail(400, {
-			// 	message: 'Incorrect username or password'
-			// });
 			return setError(form, 'password', 'Incorrect username or password.');
 		}
 
@@ -54,7 +46,6 @@ export const actions: Actions = {
 			parallelism: 1
 		});
 		if (!validPassword) {
-			// return fail(400, { message: 'Incorrect username or password' });
 			return setError(form, 'password', 'Incorrect username or password.');
 		}
 
@@ -68,7 +59,6 @@ export const actions: Actions = {
 		redirect(302, '/');
 	},
 	signUp: async ({ request, cookies }) => {
-		console.log('hello from signUp');
 		const form = await superValidate(request, zod(signUpFormSchema));
 		if (!form.valid) {
 			return fail(400, { form });
@@ -104,5 +94,11 @@ export const actions: Actions = {
 			...sessionCookie.attributes
 		});
 		redirect(302, '/');
+	},
+	postText: async ({ request }) => {
+		const form = await superValidate(request, zod(postTextSchema));
+		if (!form.valid) {
+			return fail(400, { form });
+		}
 	}
 };
