@@ -16,7 +16,7 @@ export const userRelations = relations(userTable, ({ many }) => ({
 export const postTable = pgTable('post', {
 	id: serial('id').primaryKey(),
 	content: text('content').notNull(),
-	createdAt: timestamp('created_at'),
+	createdAt: timestamp('created_at').defaultNow().notNull(),
 	authorId: text('author_id')
 		.notNull()
 		.references(() => userTable.id)

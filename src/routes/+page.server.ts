@@ -24,7 +24,7 @@ export const load: PageServerLoad = async (event) => {
 	};
 };
 
-export const actions: Actions = {
+export const actions = {
 	signIn: async ({ request, cookies }) => {
 		const form = await superValidate(request, zod(signInFormSchema));
 		if (!form.valid) {
@@ -95,10 +95,14 @@ export const actions: Actions = {
 		});
 		redirect(302, '/');
 	},
-	postText: async ({ request }) => {
+	addPost: async ({ request, locals }) => {
 		const form = await superValidate(request, zod(postTextSchema));
 		if (!form.valid) {
 			return fail(400, { form });
 		}
+
+		if (!locals.user) {
+			return fail(400, { error: 'user is not authenticated' });
+		}
 	}
-};
+} satisfies Actions;

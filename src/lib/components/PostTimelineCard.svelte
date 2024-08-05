@@ -22,9 +22,10 @@
 	});
 	const { form: formData, enhance } = form;
 
-	let isDisabled = $derived(
-		$formData.textContent.length === 0 || $formData.textContent.length > 144
-	);
+	let isDisabled = $derived(() => {
+		const textSize = $formData.textContent.trim().length;
+		return textSize === 0 || textSize > 144;
+	});
 </script>
 
 <div class="flex w-full gap-2 bg-slate-200 p-4">
@@ -35,7 +36,7 @@
 		</Avatar.Root>
 	</div>
 	<div class="h-full w-full bg-rose-100">
-		<form class="flex flex-col gap-2 p-2" method="POST" action="?/postText" use:enhance>
+		<form class="flex flex-col gap-2 p-2" method="POST" action="?/addPost" use:enhance>
 			<Form.Field {form} name="textContent">
 				<Form.Control let:attrs>
 					<Textarea
@@ -48,7 +49,7 @@
 				<Form.FieldErrors />
 			</Form.Field>
 			<Separator class="bg-rose-500" />
-			<Form.Button class="mb-4" disabled={isDisabled}>Post</Form.Button>
+			<Form.Button class="mb-4" disabled={isDisabled()}>Post</Form.Button>
 		</form>
 	</div>
 </div>
