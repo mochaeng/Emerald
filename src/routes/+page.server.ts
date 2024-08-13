@@ -1,6 +1,6 @@
-import { getAllPostsWithUser } from '$lib/db/services/post';
+import { addPost, getAllPostsWithUser } from '$lib/db/services/post';
 import { redirect } from '@sveltejs/kit';
-import type { Action, Actions, PageServerLoad } from './$types';
+import type { Actions, PageServerLoad } from './$types';
 import { fail, setError, superValidate } from 'sveltekit-superforms';
 import { postTextSchema, signInFormSchema, signUpFormSchema } from '$lib/forms/schema';
 import { zod } from 'sveltekit-superforms/adapters';
@@ -103,6 +103,12 @@ export const actions = {
 
 		if (!locals.user) {
 			return fail(400, { error: 'user is not authenticated' });
+		}
+
+		const textContent = form.data.textContent;
+		const isAdded = addPost(textContent, locals.user.id);
+		if (!isAdded) {
+			return setError(form, 'textContent', 'Not possible to post. Try again.');
 		}
 	}
 } satisfies Actions;
