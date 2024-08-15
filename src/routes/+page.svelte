@@ -3,11 +3,11 @@
 	import Timeline from '$lib/components/Timeline.svelte';
 
 	let { data } = $props();
-	let { signInForm, signUpForm, postTextForm } = data;
+	let { signInForm, signUpForm, postTextForm, posts } = data;
 </script>
 
 {#if data.user}
-	<Timeline {postTextForm} />
+	<Timeline {postTextForm} {posts} />
 {:else}
 	<SapphireFrontPage data={{ signInForm, signUpForm }} />
 {/if}

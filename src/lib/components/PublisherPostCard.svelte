@@ -14,6 +14,7 @@
 		validators: zodClient(postTextSchema),
 		onUpdated: ({ form: f }) => {
 			if (f.valid) {
+				$formData.textContent = '';
 				toast.success(`Posted succesfully`);
 			} else {
 				toast.error('Please fix the errors before posting.');

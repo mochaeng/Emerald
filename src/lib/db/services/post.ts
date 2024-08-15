@@ -1,11 +1,22 @@
 import { db } from '..';
 import { postTable } from '../schema';
 
+export type PostWithUser = {
+	id: number;
+	content: string;
+	createdAt: Date;
+	authorId: string;
+	author: { username: string };
+};
+
 export async function getAllPostsWithUser() {
-	const posts = await db.query.postTable.findMany({
+	const posts: PostWithUser[] = await db.query.postTable.findMany({
 		with: {
-			author: true
-		}
+			author: {
+				columns: { username: true }
+			}
+		},
+		limit: 10
 	});
 	return posts;
 }

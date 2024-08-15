@@ -74,13 +74,13 @@
 	<div class="flex flex-col gap-4">
 		{#each photos as photo}
 			<article>
-				<PostCard
+				<!-- <PostCard
 					{profileName}
 					{profileImg}
 					profileAt="sana_jyp"
 					postText="Boa noite. Todos sabemos que a chaeyoung é maior que Lalisa"
 					postImg={{ src: photo, alt: 'chaeyoung' }}
-				/>
+				/> -->
 			</article>
 		{/each}
 	</div>
